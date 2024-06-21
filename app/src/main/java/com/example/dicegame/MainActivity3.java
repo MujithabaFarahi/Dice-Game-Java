@@ -303,33 +303,34 @@ public class MainActivity3 extends AppCompatActivity {
 
                 totalSumOfC = 0;
                 totalSumOfH = 0;
+
                 compScore.setText(String.valueOf(totalSumOfC));
                 humanScore.setText(String.valueOf(totalSumOfH));
 
-                winLoseCount.setText("W: " + winCount + " L: " + loseCount);
             }
         });
 
-        TextView winLoseText = popUpView.findViewById(R.id.winLoseText);
-        winLoseText.setTextColor(Color.WHITE);
+        TextView textWinLose = popUpView.findViewById(R.id.winPopUp);
+
+
 
         if (finalSumOfC > finalSumOfH) {
-            winLoseText.setText("You Lose");
+            textWinLose.setText("You Lose");
+            textWinLose.setTextColor(Color.RED);
             loseCount++;
         } else if (finalSumOfH > finalSumOfC) {
-            winLoseText.setText("You Win");
+            textWinLose.setText("You Win");
+            textWinLose.setTextColor(Color.GREEN);
             winCount++;
-        } else {
-            if (finalSumOfC == finalSumOfH) {
-                winLoseText.setText("Tie");
-            }
         }
+
+        winLoseCount.setText("W: " + winCount + " L: " + loseCount);
 
         popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 0);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putInt("totalSumOfC", totalSumOfC);
@@ -338,6 +339,7 @@ public class MainActivity3 extends AppCompatActivity {
         outState.putInt("loseCount", loseCount);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);

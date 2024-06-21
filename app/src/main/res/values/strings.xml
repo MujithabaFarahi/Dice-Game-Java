@@ -2,7 +2,7 @@
     <string name="app_name">DICE ROLLER</string>
     <string name="new_game">New Game</string>
     <string name="about">About</string>
-    <string name="about_text">"Mujithaba Farahi" \n 20210237 \n \n  "I confirm that I understand what plagiarism is and have read and understood the section on Assessment Offences in the Essential Information for Students. The work that I have submitted is entirely my own. Any work from other authors is duly referenced and acknowledged."</string>
+    <string name="about_text">"This is a small mobile game where a player can roll 5 dices at a time and score will be calculated using the values get from the dices. User can set a target before the start of play and the first one to win the round. Player can select to play with computer and another player" \n \n "Mujithaba Farahi"   </string>
     <string name="throw_button">Throw Dice</string>
     <string name="win_messege">""\n"" \n "YOU WIN!"</string>
     <string name="lose_messege">""\n ""\n "YOU LOSE!"</string>
