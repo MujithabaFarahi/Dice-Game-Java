@@ -75,7 +75,6 @@ public class MainActivity3 extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             targett = bundle.getInt("target");
-            hard = bundle.getBoolean("hardMode");
         }
 
         humanDiceImages = new ImageView[] {

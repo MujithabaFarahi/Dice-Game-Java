@@ -151,21 +151,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="184dp"
         android:textColor="@color/white"
-        android:text="@string/player_dices"
+        android:text="@string/player_1_dices"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    s
 
     <TextView
         android:id="@+id/compDice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="372dp"
+        android:layout_marginTop="368dp"
+        android:text="@string/player_2_dices"
         android:textColor="@color/white"
-        android:text="@string/computer_dices"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -200,7 +201,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="@string/human"
+        android:text="@string/player_1"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/humanScore"
         app:layout_constraintHorizontal_bias="0.942"
@@ -213,7 +214,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="5dp"
-        android:text="@string/computer"
+        android:text="@string/player_2"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/compScore"
         app:layout_constraintHorizontal_bias="0.954"
@@ -225,7 +226,7 @@
         android:layout_width="85dp"
         android:layout_height="21dp"
         android:layout_marginTop="52dp"
-        android:text="@string/h_c"
+        android:text="@string/player_scores"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/humanScoreTitle"
         app:layout_constraintHorizontal_bias="0.088"

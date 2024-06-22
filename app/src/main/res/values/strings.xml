@@ -23,4 +23,9 @@
     <string name="dice_roller">Dice Roller</string>
     <string name="score">Score</string>
     <string name="__">--</string>
+    <string name="player_scores">P1:0 / P2:0</string>
+    <string name="player_2">Player 2</string>
+    <string name="player_1">Player_1</string>
+    <string name="player_2_dices">Player 2 Dices</string>
+    <string name="player_1_dices">Player 1 Dices</string>
 </resources>
