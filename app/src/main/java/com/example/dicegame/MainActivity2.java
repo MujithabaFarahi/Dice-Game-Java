@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SwitchCompat;
 public class MainActivity2 extends AppCompatActivity {
 
     private Button targetOkButton;
+    private Button multiPlayerButton;
     private EditText score;
     private SwitchCompat switchHard;
 
@@ -22,6 +23,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         score = findViewById(R.id.score);
         targetOkButton = findViewById(R.id.targetOkButton);
+        multiPlayerButton = findViewById(R.id.multiPlayerButton);
         switchHard = findViewById(R.id.switchHard);
 
         targetOkButton.setOnClickListener(v -> {
@@ -34,7 +36,22 @@ public class MainActivity2 extends AppCompatActivity {
             }
             bundle.putBoolean("hardMode", switchBoolean);
 
-            Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
+            Intent intent = new Intent(MainActivity2.this, MainActivity4.class);
+            intent.putExtras(bundle);
+
+            startActivity(intent);
+        });
+
+        multiPlayerButton.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+
+            if (score.getText() == null || score.getText().toString().isBlank()) {
+                bundle.putInt("target", 101);
+            } else {
+                bundle.putInt("target", Integer.parseInt(score.getText().toString()));
+            }
+
+            Intent intent = new Intent(MainActivity2.this, MainActivity4.class);
             intent.putExtras(bundle);
 
             startActivity(intent);

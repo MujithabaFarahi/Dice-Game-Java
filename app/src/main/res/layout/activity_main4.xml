@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".MainActivity3">
+    tools:context=".MainActivity4">
 
 
     <ImageView
@@ -156,7 +156,6 @@
         app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    s
 
     <TextView
         android:id="@+id/compDice"

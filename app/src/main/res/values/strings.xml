@@ -28,4 +28,6 @@
     <string name="player_1">Player_1</string>
     <string name="player_2_dices">Player 2 Dices</string>
     <string name="player_1_dices">Player 1 Dices</string>
+    <string name="vs_computer">vs Computer</string>
+    <string name="_2_players">2 Players</string>
 </resources>

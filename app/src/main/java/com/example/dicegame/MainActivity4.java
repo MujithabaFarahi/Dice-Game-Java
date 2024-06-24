@@ -17,11 +17,10 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity3 extends AppCompatActivity {
+public class MainActivity4 extends AppCompatActivity {
 
     private Button throwButton;
     private Button scoreButton;
@@ -39,14 +38,9 @@ public class MainActivity3 extends AppCompatActivity {
     private List<Integer> reRollValuesH = new ArrayList<>();
     private List<Integer> reRollValuesC = new ArrayList<>();
 
-    private List<Boolean> pickedBoolean = Arrays.asList(true, false);
-
-
     private int rollCount = 0;
 
     private int targett = 0;
-
-    private boolean hard = true;
 
     private int totalSumOfC = 0;
     private int totalSumOfH = 0;
@@ -97,11 +91,11 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (rollCount != 0) {
-                    if (hard) {
-                        computerStratergy();
-                    } else {
-                        randomStratergy();
-                    }
+//                    if (hard) {
+//                        computerStratergy();
+//                    } else {
+//                        randomStratergy();
+//                    }
 
                     for (int x : hDiceValues) {
                         sumOfH += x;
@@ -117,8 +111,7 @@ public class MainActivity3 extends AppCompatActivity {
 
                     winnerSelect(totalSumOfC, totalSumOfH);
 
-                    cDiceValues.clear();
-                    hDiceValues.clear();
+
                     reRollValuesH.clear();
                     reRollValuesC.clear();
                     rollCount = 0;
@@ -132,6 +125,7 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 hDiceValues.clear();
+                cDiceValues.clear();
                 sumOfC = 0;
                 sumOfH = 0;
 
@@ -167,11 +161,11 @@ public class MainActivity3 extends AppCompatActivity {
                     }
                 }
 
-                if (rollCount == 0) {
-                    for (int i = 0; i < 5; i++) {
-                        int randomIntC = new Random().nextInt(6) + 1;
+                for (int i = 0; i < 5; i++) {
+                    if (!reRollValuesC.contains(i)) {
+                        int randomIntH = new Random().nextInt(6) + 1;
                         int drawableResource;
-                        switch (randomIntC) {
+                        switch (randomIntH) {
                             case 1:
                                 drawableResource = R.drawable.dice_one1;
                                 break;
@@ -192,16 +186,14 @@ public class MainActivity3 extends AppCompatActivity {
                                 break;
                         }
                         computerDiceImages[i].setImageResource(drawableResource);
-                        cDiceValues.add(randomIntC);
+                        computerDiceImages[i].setTag(randomIntH);
+                        cDiceValues.add(randomIntH);
+                    } else {
+                        cDiceValues.add((Integer) computerDiceImages[i].getTag());
                     }
                 }
-                rollCount++;
 
-                if (hard) {
-                    computerStratergy();
-                } else {
-                    randomStratergy();
-                }
+                rollCount++;
 
                 if (rollCount == 3) {
                     for (int i : hDiceValues) {
@@ -209,6 +201,7 @@ public class MainActivity3 extends AppCompatActivity {
                     }
                     totalSumOfH += sumOfH;
                     humanScore.setText(String.valueOf(totalSumOfH));
+
                     for (int j : cDiceValues) {
                         sumOfC += j;
                     }
@@ -218,7 +211,9 @@ public class MainActivity3 extends AppCompatActivity {
                     winnerSelect(totalSumOfC, totalSumOfH);
                     rollCount = 0;
                     reRollValuesH.clear();
+                    reRollValuesC.clear();
                     cDiceValues.clear();
+                    hDiceValues.clear();
                 }
             }
         });
@@ -263,6 +258,49 @@ public class MainActivity3 extends AppCompatActivity {
                 }
             }
         });
+
+        //###################################################################//
+        computerDiceImages[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rollCount != 0) {
+                    reRollValuesC.add(0);
+                }
+            }
+        });
+        computerDiceImages[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rollCount != 0) {
+                    reRollValuesC.add(1);
+                }
+            }
+        });
+        computerDiceImages[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rollCount != 0) {
+                    reRollValuesC.add(2);
+                }
+            }
+        });
+        computerDiceImages[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rollCount != 0) {
+                    reRollValuesC.add(3);
+                }
+            }
+        });
+        computerDiceImages[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rollCount != 0) {
+                    reRollValuesC.add(4);
+                }
+            }
+        });
+
     }
 
     private void winnerSelect(int finalSumOfC, int finalSumOfH) {
@@ -310,16 +348,16 @@ public class MainActivity3 extends AppCompatActivity {
         TextView textWinLose = popUpView.findViewById(R.id.winPopUp);
 
         if (finalSumOfC > finalSumOfH) {
-            textWinLose.setText("You Lose!");
-            textWinLose.setTextColor(Color.RED);
+            textWinLose.setText("Player 2 Win!");
+            textWinLose.setTextColor(Color.GREEN);
             loseCount++;
         } else if (finalSumOfH > finalSumOfC) {
-            textWinLose.setText("You Win!");
+            textWinLose.setText("Player 1 Win!");
             textWinLose.setTextColor(Color.GREEN);
             winCount++;
         }
 
-        winLoseCount.setText("W: " + winCount + " L: " + loseCount);
+        winLoseCount.setText("P1: " + winCount + " P2: " + loseCount);
 
         popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 0);
     }
@@ -347,101 +385,9 @@ public class MainActivity3 extends AppCompatActivity {
         compScore.setText(String.valueOf(totalSumOfC));
         humanScore.setText(String.valueOf(totalSumOfH));
 
-        winLoseCount.setText("W: " + winCount + " L: " + loseCount);
+        winLoseCount.setText("P1: " + winCount + " P2: " + loseCount);
     }
 
-    private void randomStratergy() {
-        for (int i = 0; i < 5; i++) {
-            int randomIntC = new Random().nextInt(6) + 1;
-            cDiceValues.set(i, randomIntC);
-            int drawableResource;
-            switch (randomIntC) {
-                case 1:
-                    drawableResource = R.drawable.dice_one1;
-                    break;
-                case 2:
-                    drawableResource = R.drawable.dice_two2;
-                    break;
-                case 3:
-                    drawableResource = R.drawable.dice_three3;
-                    break;
-                case 4:
-                    drawableResource = R.drawable.dice_four4;
-                    break;
-                case 5:
-                    drawableResource = R.drawable.dice_five5;
-                    break;
-                default:
-                    drawableResource = R.drawable.dice_six6;
-                    break;
-            }
-            computerDiceImages[i].setImageResource(drawableResource);
-        }
-    }
-
-    private void computerStratergy() {
-        int humanScoreSum = 0;
-        for (int x : hDiceValues) {
-            humanScoreSum += x;
-        }
-        for (int i = 0; i < 5; i++) {
-            if (humanScoreSum >= totalSumOfC) {
-                if (cDiceValues.get(i) < 5) {
-                    int randomIntC = new Random().nextInt(6) + 1;
-                    cDiceValues.set(i, randomIntC);
-                    int drawableResource;
-                    switch (randomIntC) {
-                        case 1:
-                            drawableResource = R.drawable.dice_one1;
-                            break;
-                        case 2:
-                            drawableResource = R.drawable.dice_two2;
-                            break;
-                        case 3:
-                            drawableResource = R.drawable.dice_three3;
-                            break;
-                        case 4:
-                            drawableResource = R.drawable.dice_four4;
-                            break;
-                        case 5:
-                            drawableResource = R.drawable.dice_five5;
-                            break;
-                        default:
-                            drawableResource = R.drawable.dice_six6;
-                            break;
-                    }
-                    computerDiceImages[i].setImageResource(drawableResource);
-                }
-            } else {
-                if (cDiceValues.get(i) < 3) {
-                    int randomIntC = new Random().nextInt(6) + 1;
-                    cDiceValues.set(i, randomIntC);
-                    int drawableResource;
-                    switch (randomIntC) {
-                        case 1:
-                            drawableResource = R.drawable.dice_one1;
-                            break;
-                        case 2:
-                            drawableResource = R.drawable.dice_two2;
-                            break;
-                        case 3:
-                            drawableResource = R.drawable.dice_three3;
-                            break;
-                        case 4:
-                            drawableResource = R.drawable.dice_four4;
-                            break;
-                        case 5:
-                            drawableResource = R.drawable.dice_five5;
-                            break;
-                        default:
-                            drawableResource = R.drawable.dice_six6;
-                            break;
-                    }
-                    computerDiceImages[i].setImageResource(drawableResource);
-                }
-            }
-        }
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

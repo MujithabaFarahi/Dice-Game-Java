@@ -17,7 +17,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -38,9 +37,6 @@ public class MainActivity3 extends AppCompatActivity {
 
     private List<Integer> reRollValuesH = new ArrayList<>();
     private List<Integer> reRollValuesC = new ArrayList<>();
-
-    private List<Boolean> pickedBoolean = Arrays.asList(true, false);
-
 
     private int rollCount = 0;
 
@@ -320,7 +316,7 @@ public class MainActivity3 extends AppCompatActivity {
             winCount++;
         }
 
-        winLoseCount.setText("W: " + winCount + " L: " + loseCount);
+        winLoseCount.setText("W: " + winCount + "/ L: " + loseCount);
 
         popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 0);
     }
@@ -348,7 +344,7 @@ public class MainActivity3 extends AppCompatActivity {
         compScore.setText(String.valueOf(totalSumOfC));
         humanScore.setText(String.valueOf(totalSumOfH));
 
-        winLoseCount.setText("W: " + winCount + " L: " + loseCount);
+        winLoseCount.setText("W: " + winCount + "/ L: " + loseCount);
     }
 
     private void randomStratergy() {
